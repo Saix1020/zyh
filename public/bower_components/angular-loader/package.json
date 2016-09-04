@@ -1,0 +1,68 @@
+{
+  "name": "angular-loader",
+  "version": "1.5.8",
+  "description": "AngularJS module for asynchronously loading modules",
+  "main": "angular-loader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angular/angular.js.git"
+  },
+  "keywords": [
+    "angular",
+    "framework",
+    "browser",
+    "loader",
+    "client-side"
+  ],
+  "author": {
+    "name": "Angular Core Team",
+    "email": "angular-core+npm@google.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angular/angular.js/issues"
+  },
+  "homepage": "http://angularjs.org",
+  "jspm": {
+    "shim": {
+      "angular-loader": {
+        "deps": [
+          "angular"
+        ]
+      }
+    }
+  },
+  "gitHead": "449fb22114bf6b383686badc4cbbad27fcc6a211",
+  "_id": "angular-loader@1.5.8",
+  "_shasum": "7ea727ca031aa1b70c46a9ef0d90e7bf729eedcb",
+  "_from": "angular-loader@*",
+  "_npmVersion": "2.15.8",
+  "_nodeVersion": "4.4.7",
+  "_npmUser": {
+    "name": "angularcore",
+    "email": "angular-core+npm@google.com"
+  },
+  "dist": {
+    "shasum": "7ea727ca031aa1b70c46a9ef0d90e7bf729eedcb",
+    "tarball": "https://registry.npmjs.org/angular-loader/-/angular-loader-1.5.8.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "angularcore",
+      "email": "angular-core+npm@google.com"
+    },
+    {
+      "name": "petebd",
+      "email": "pete@bacondarwin.com"
+    }
+  ],
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/angular-loader-1.5.8.tgz_1469201438923_0.5446552601642907"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/angular-loader/-/angular-loader-1.5.8.tgz"
+}

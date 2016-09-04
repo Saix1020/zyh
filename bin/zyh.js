@@ -323,14 +323,14 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
 module.exports = zyh;
 
 
-var decodeString = iconv.decode(
-    '<?xml version="1.0" encoding = "GBK"?><MEBS_MOBILE><REP name="issue_commodity"><RESULTLIST>' +
-    '<REC><CO_I>100056</CO_I><CO_N>�ȶ�������ˮƽ</CO_N><BR>1004</BR><PRC>6.70</PRC>' +
-    '<QTY>15000.00</QTY>' +
-    '<S_D>2016-09-01</S_D><E_D>2016-09-01</E_D></REC></RESULTLIST><RESULT><TTLREC>1</TTLREC>' +
-    '<RETCODE>0</RETCODE><MESSAGE></MESSAGE></RESULT></REP></MEBS_MOBILE>', 'utf-8');
-console.log(iconv.decode(decodeString, 'gbk'))
-
-xml2js.parseString(decodeString, function (err, result){
-
-});
+// var decodeString = iconv.decode(
+//     '<?xml version="1.0" encoding = "GBK"?><MEBS_MOBILE><REP name="issue_commodity"><RESULTLIST>' +
+//     '<REC><CO_I>100056</CO_I><CO_N>�ȶ�������ˮƽ</CO_N><BR>1004</BR><PRC>6.70</PRC>' +
+//     '<QTY>15000.00</QTY>' +
+//     '<S_D>2016-09-01</S_D><E_D>2016-09-01</E_D></REC></RESULTLIST><RESULT><TTLREC>1</TTLREC>' +
+//     '<RETCODE>0</RETCODE><MESSAGE></MESSAGE></RESULT></REP></MEBS_MOBILE>', 'utf-8');
+// console.log(iconv.decode(decodeString, 'gbk'))
+//
+// xml2js.parseString(decodeString, function (err, result){
+//
+// });

@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-  .controller('MyCtrl1', function($scope, $http) {
+  .controller('MyCtrl1', function($scope, $http, $cookies) {
 
       //$scope.users = [];
 
@@ -21,7 +21,7 @@ angular.module('myApp.controllers', [])
                 markets[key].users_info.push({
                   name : user,
                   password : markets[key].password,
-                  token : ''
+                  token : $cookies.get('' + markets[key].id + '.' + user)
                 })
               })
             }
@@ -36,6 +36,9 @@ angular.module('myApp.controllers', [])
               .success(function (response) {
                 if(response.return_code == 0){
                   user_info.token = response.token;
+                    var expireDate = new Date();
+                    expireDate.setMinutes(expireDate.getMinutes() + 10);
+                    $cookies.put('' + market_config.id + '.' + user_info.name, response.token, {'expires': expireDate});
                 }
                 else {
                   console.log(response.error_message + ' 登录失败');
@@ -43,6 +46,24 @@ angular.module('myApp.controllers', [])
               })
               .catch(function(e){
                 console.log(user_info.name + ' 登录失败');
+              })
+      };
+
+      $scope.query =  function(market_config, user_info) {
+          $http.post('/users/query', JSON.stringify({
+              market : market_config,
+              user : user_info
+          }))
+              .success(function (response) {
+                  if(response.return_code == 0){
+
+                  }
+                  else {
+                      console.log(response.error_message + ' 查询失败');
+                  }
+              })
+              .catch(function(e){
+                  console.log(user_info.name + ' 查询失败');
               })
       }
   })

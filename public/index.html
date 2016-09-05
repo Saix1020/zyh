@@ -18,7 +18,25 @@
 </head>
 <body>
 
-  <div ng-view></div>
+<div class="container-fluid" id="content">
+  <div class="row">
+    <div class="col-md-2 sidebar" id="sidebar">
+      <br>
+      <ul class="nav nav-pills nav-stacked" id="market-nav">
+        <!--<li id="market_89"><a href=""><h3>安贵文化</h3></a></li>-->
+        <!--<li id="market_87"><a href=""><h3>河北邮币卡</h3></a></li>-->
+      </ul>
+    </div>
+
+
+      <div class="col-md-10 main" id="main">
+      <div ng-view></div>
+    </div>
+</div>
+
+
+
+  <!--<div ng-view></div>-->
 
 </div>
   <!-- In production use:

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var ZYH = require('../bin/zyh');
 var markets = {
-  '安贵' : {
+  '安贵文化' : {
     id : 89,
     ip : '180.168.67.10',
     port : 15930,
@@ -54,6 +54,19 @@ router.get('/markets', function(req, res, next){
   res.json(markets);
 });
 
+router.get('/market/:market', function(req, res, next){
+  //res.json(markets);
+  var market_id = req.params['market'];
+  var return_markets = {};
+  for(var key in markets){
+    if (markets[key].id == market_id){
+      return_markets[key] = markets[key];
+    }
+  }
+  res.json(return_markets);
+
+});
+
 //function zyh(pincode, hostname, user, password, SI)
 
 router.post('/login', function(req, res, next){
@@ -76,9 +89,14 @@ router.post('/login', function(req, res, next){
         })
       })
       .catch(function(error){
+        if(error.MEBS.length>0){
+          error.MEBS_MOBILE = error.MEBS;
+        }
+        error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE = error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE || [];
+
         res.json({
           return_code : -1,
-          error_message : error
+          error_message : error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE
         })
       })
 });
@@ -118,9 +136,10 @@ router.post('/query', function(req, res, next) {
         })
       })
       .catch(function(error){
+        error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE = error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE || [];
         res.json({
           return_code : -1,
-          error_message : error
+          error_message : error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE[0]
         })
       })
 });
@@ -139,9 +158,10 @@ router.post('/detail_query', function(req, res, next) {
         })
       })
       .catch(function(error){
+        error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE = error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE || [];
         res.json({
           return_code : -1,
-          error_message : error
+          error_message : error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE[0]
         })
       });
 });
@@ -163,6 +183,7 @@ router.post('/order', function(req, res, next) {
         })
       })
       .catch(function(error){
+        error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE = error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE || [];
         res.json({
           return_code : -1,
           error_message : error.MEBS_MOBILE.REP[0].RESULT[0].MESSAGE[0]

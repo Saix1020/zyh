@@ -109,7 +109,7 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
                     var decodedBody = iconv.decode(Buffer.concat(chunks), 'gbk');
                     console.log(decodedBody);
 
-                    xml2js.parseString(responseString, function (err, result) {
+                    xml2js.parseString(decodedBody, function (err, result) {
                         formatResult(result);
                         resultCheck(result, resolve, reject);
                     });
@@ -228,7 +228,7 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
                 res.on('end', function () {
                     var decodedBody = iconv.decode(Buffer.concat(chunks), 'gbk');
                     console.log(decodedBody);
-                    xml2js.parseString(responseString, function (err, result) {
+                    xml2js.parseString(decodedBody, function (err, result) {
                         formatMobileResult(result);
                         resultCheck(result, resolve, reject);
                     });
@@ -283,6 +283,38 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
             }
         });
     }.bind(this);
+
+    //
+//<MEBS_MOBILE>
+//<REQ name="issue_commodity_detail">
+//<U>1707903339</U>
+//<C_I>609132</C_I>
+//<S_I>8672102401628697671</S_I>
+//</REQ>
+//</MEBS_MOBILE>
+    //
+
+    this.issue_commodity_detail = function(productId){
+        var xml = jsonxml({
+            MEBS_MOBILE:[
+                { name : 'REQ', attrs:{name:'issue_commodity_detail'}, children:[
+                    {name : 'U', text : this.user},
+                    {name : 'C_I', text : productId},
+                    {name : 'S_I', text : this.SI}
+                ]}
+            ]
+        });
+
+        return MEBSMOBILEHttpRequest.call(this, xml, function(result, resolve, reject){
+            var returnCode = getMobileReturnCode(result);
+            if(returnCode.indexOf('-') == 0){
+                reject(result);
+            }
+            else {
+                resolve(result.MEBS_MOBILE.REP[0].RESULT[0]);
+            }
+        });
+    };
 
     this.issue_order = function(productId, productAmount){
         var xml = jsonxml({

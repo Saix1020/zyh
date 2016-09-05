@@ -14,6 +14,27 @@
                 </div>
             </form>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-md-3 col-md-offset-1"
+             style="border:1px solid #1441ff;"
+             ng-repeat="product in market.config.products">
+            <br>
+            <div>
+                <label>商品代码 : {{product.id}}</label>
+            </div>
+            <div>
+                <label>商品名称 :{{ product.name}}</label>
+            </div>
+            <div>
+                <label>发行价 : {{product.price}}</label>
+            </div>
+            <div>
+                <label>发型数量 :{{ product.quantity}}</label>
+            </div>
+            <br>
+        </div>
+    </div>
     <div class="row">
         <hr>
 
@@ -36,7 +57,7 @@
                 <div class="form-group">
                     <label for="token3" class="col-sm-2 control-label">令牌</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="token3" ng-model="users_info.token" ng-disabled="true" placeholder="令牌">
+                        <input type="text" class="form-control" id="token3" ng-model="users_info.token" placeholder="令牌">
                     </div>
                 </div>
                 <div class="form-group">
@@ -51,9 +72,23 @@
                 </div>
                 <div ng-if="users_info.token">
                     <div class="form-group">
+                        <label for="products" class="col-sm-2 control-label">商品</label>
+                        <div class="col-sm-10">
+
+                            <select ng-model="users_info.selected_product"
+                                    ng-change="query_detail(market.config, users_info)"
+                                    ng-options="product.id as product.name for
+                                            product in market.config.products"
+                                    class="form-control"
+                                    >
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="products" class="col-sm-2 control-label">数量</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="products" ng-model="users_info.products" placeholder="数量">
+                            <input type="text" class="form-control" id="products" ng-model="users_info.product_amount" placeholder="数量">
                         </div>
                     </div>
                     <div class="form-group">
@@ -69,19 +104,44 @@
                                 抢购
                             </button>
                             <button type="submit"
-                                    ng-click="order(market.config, users_info)"
+                                    ng-click="login(market.config, users_info)"
                                     class="btn btn-default">
                                 重新登录
                             </button>
                             <!--<button ng-if="token.length!=0" type="submit" class="btn btn-default">抢票</button>-->
                         </div>
                     </div>
+                    <div class="row" ng-show="users_info.output.length>0">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span ng-class="users_info.output=='抢购成功'?
+                            'label label-success' : 'label label-warning'">
+                                {{users_info.output}}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
                 </div>
 
             </form>
         </div>
 
     </div>
+    <br>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-10">
+            <button type="submit"
+                    ng-click="batch_query(market.config)"
+                    class="btn btn-info">
+                批量查询
+            </button>
+            <button type="submit"
+                    ng-click="batch_order(market.config)"
+                    class="btn btn-info">
+                批量抢票
+            </button>
 
+        </div>
+    </div>
+    <br>
 
 </div>

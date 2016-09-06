@@ -3,9 +3,36 @@
 /* Controllers */
 
 angular.module('myApp.controllers', [])
-  .controller('MyCtrl1', function($scope, $http, $cookies, $location, $routeParams) {
+  .controller('MyCtrl1', function($scope, $http, $cookies, $location, $routeParams, $q) {
         $scope.products = [];
-        var currentLocation = $location.path()
+        var currentLocation = $location.path();
+
+        function get_navigations(){
+            var deferred = $q.defer();
+            $http.get('/users/markets')
+                .success(function(markets){
+                    $('#market-nav').empty();
+
+                    $('#market-nav')
+                        .append('<li id="market-' + 'all' + '"><a href="/#' + '/view1'
+                        + '"><h4>' + '所有交易所' + '</h4></a></li>');
+
+                    for(var key in markets) {
+                        $('#market-nav')
+                            .append('<li id="market-' + markets[key].id + '"><a href="/#' + '/view1'
+                            + '/' + markets[key].id + '"><h4>' + key + '</h4></a></li>');
+                    }
+                    deferred.resolve(markets);
+                })
+                .catch(function(e){
+                    deferred.reject(e);
+                });
+
+            return deferred.promise;
+        }
+
+
+
         if(currentLocation == '/view1'){
             $http.get('/users/markets')
                 .success(function(markets){
@@ -40,37 +67,42 @@ angular.module('myApp.controllers', [])
                 });
         }
         else {
-
-            var lis = $('#market-nav').children();
-            if(lis.length == 0){
-                $location.path('/#/view1');
-                return;
-            }
-            lis.removeClass('active');
-
             var market = $routeParams['market'];
 
-            $('#market-'+market).addClass('active');
+            get_navigations().then(function(){
+                var lis = $('#market-nav').children();
+                //if(lis.length == 0){
+                //    $location.path('/#/view1');
+                //    return;
+                //}
+                lis.removeClass('active');
 
-            $http.get('/users/market/' + market)
-                .success(function(markets){
-                    $scope.markets = [];
-                    for(var key in markets) {
-                        $scope.markets.push({
-                            name: key,
-                            config: markets[key]
-                        });
-                        markets[key].users_info = [];
-                        markets[key].users = markets[key].users || [];
-                        markets[key].users.forEach(function (user) {
-                            markets[key].users_info.push({
-                                name: user,
-                                password: markets[key].password,
-                                token: $cookies.get('' + markets[key].id + '.' + user)
+
+                $('#market-'+market).addClass('active');
+
+                $http.get('/users/market/' + market)
+                    .success(function(markets){
+                        $scope.markets = [];
+                        for(var key in markets) {
+                            $scope.markets.push({
+                                name: key,
+                                config: markets[key]
+                            });
+                            markets[key].users_info = [];
+                            markets[key].users = markets[key].users || [];
+                            markets[key].users.forEach(function (user) {
+                                markets[key].users_info.push({
+                                    name: user,
+                                    password: markets[key].password,
+                                    token: $cookies.get('' + markets[key].id + '.' + user)
+                                })
                             })
-                        })
-                    }
-                });
+                        }
+                    });
+            })
+
+
+
 
         }
 

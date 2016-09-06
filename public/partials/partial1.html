@@ -5,15 +5,27 @@
         <hr>
     </div>
     <div class="row">
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-md-1 control-label pull-left">Pin</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control"
-                               ng-disabled="true" id="pincode" ng-model="market.config.pin" placeholder="Pin">
-                    </div>
+            <!--<form class="form-horizontal" role="form">-->
+                <!--<div class="form-group">-->
+                    <!--<label for="inputEmail3" class="col-md-1 control-label pull-left">Pin</label>-->
+                    <!--<div class="col-sm-10">-->
+                        <!--<input type="text" class="form-control"-->
+                               <!--ng-disabled="true" id="pincode" ng-model="market.config.pin" placeholder="Pin">-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
+
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-md-1 control-label pull-left">Pin Code</label>
+                <div class="col-sm-10">
+                    <select ng-model="market.config.pincode"
+                            ng-options="pincode for pincode in pincodes"
+                            class="form-control"></select>
                 </div>
-            </form>
+
+            </div>
+        </form>
     </div>
     <br>
     <div class="row" ng-show="market.config.products && market.config.products.length==0">
@@ -46,6 +58,24 @@
         </div>
     </div>
     <div class="row">
+        <br>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-9">
+                <button type="submit"
+                        ng-click="batch_query(market.config)"
+                        class="btn btn-info">
+                    批量查询
+                </button>
+                <button type="submit"
+                        ng-click="batch_order(market.config)"
+                        class="btn btn-info">
+                    批量抢票
+                </button>
+
+            </div>
+        </div>
+        <br>
+
         <hr>
 
     </div>
@@ -66,7 +96,7 @@
                                ng-model="users_info.password" id="inputPassword3" placeholder="密码">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" ng-show="false">
                     <label for="token3" class="col-sm-2 control-label">令牌</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="token3"
@@ -108,12 +138,12 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit"
                                     ng-click="query(market.config, users_info)"
-                                    class="btn btn-default">
+                                    class="btn btn-success">
                                 查询
                             </button>
                             <button type="submit"
                                     ng-click="order(market.config, users_info)"
-                                    class="btn btn-default">
+                                    class="btn btn-success">
                                 抢购
                             </button>
                             <button type="submit"
@@ -126,8 +156,8 @@
                     </div>
                     <div class="row" ng-show="users_info.output.length>0">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <span ng-class="users_info.output=='抢购成功'?
-                            'label label-success' : 'label label-warning'">
+                            <span ng-class="users_info.output.indexOf('成功')!=-1?
+                            'label label-warning' : 'label label-danger'">
                                 {{users_info.output}}
                             </span>
                         </div>
@@ -139,22 +169,5 @@
         </div>
 
     </div>
-    <br>
-    <div class="row">
-        <div class="col-md-2 col-md-offset-10">
-            <button type="submit"
-                    ng-click="batch_query(market.config)"
-                    class="btn btn-info">
-                批量查询
-            </button>
-            <button type="submit"
-                    ng-click="batch_order(market.config)"
-                    class="btn btn-info">
-                批量抢票
-            </button>
-
-        </div>
-    </div>
-    <br>
 
 </div>

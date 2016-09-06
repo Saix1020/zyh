@@ -337,6 +337,65 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
         return MEBSMOBILEHttpRequest.call(this, xml);
     }.bind(this);
 
+
+    this.allmarket = function(pin, session) {
+        pin = pin || this.pincode;
+        session = session || this.session;
+
+        var xml = jsonxml({
+            MEBS_MOBILE:[
+                { name : 'REQ', attrs:{name:'allmarket'}, children:[
+                    {name : 'PINSCODE', text : pin},
+                    {name : 'SESSIONID', text : session},
+                    {name : 'MARKETID', text : -1}
+                ]}
+            ]
+        });
+
+        return MEBSHttpRequest(xml, function(result, resolve, reject) {
+            var returnCode = getReturnCode(result);
+            if (returnCode.indexOf('-') == 0) {
+                reject(result);
+            }
+            else {
+                result.MEBS.REP[0].RESULTLIST = result.MEBS.REP[0].RESULTLIST || [];
+                result.MEBS.REP[0].RESULTLIST[0].REC = result.MEBS.REP[0].RESULTLIST[0].REC || [];
+                var markets = result.MEBS.REP[0].RESULTLIST[0].REC;
+                resolve(markets);
+            }
+        });
+
+    }.bind(this);
+
+    this.tradeserverinfo = function(pin, session, marketId, marketName) {
+        pin = pin || this.pincode;
+        session = session || this.session;
+
+        var xml = jsonxml({
+            MEBS_MOBILE:[
+                { name : 'REQ', attrs:{name:'tradeserverinfo'}, children:[
+                    {name : 'PINSCODE', text : pin},
+                    {name : 'SESSIONID', text : session},
+                    {name : 'MARKETID', text : marketId},
+                    {name : 'TRADEMODELID', text : 1}
+                ]}
+            ]
+        });
+
+        return MEBSHttpRequest(xml, function(result, resolve, reject) {
+            var returnCode = getReturnCode(result);
+            if (returnCode.indexOf('-') == 0) {
+                resolve(null);
+            }
+            else {
+                result.MEBS.REP[0].RESULTLIST = result.MEBS.REP[0].RESULTLIST || [];
+                result.MEBS.REP[0].RESULTLIST[0].REC = result.MEBS.REP[0].RESULTLIST[0].REC || [];
+                var markets = result.MEBS.REP[0].RESULTLIST[0].REC;
+                resolve(markets);
+            }
+        });
+    }
+
 }
 
 //var pincode = 'ozGwruLoMDDdbk7RMS65lMw2TRA07140812755492777474';
@@ -359,4 +418,69 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
 //    });
 
 module.exports = zyh;
+
+
+//var fs = require('fs');
+//var path = require('path');
+//var zyh = new zyh();
+//var series = new PromiseSeries();
+//var output = '';
+//
+//zyh.allmarket('saix7207009849723463628', '9125488089198004672')
+//    .then(function(markets){
+//        markets.forEach(function(market, index){
+//
+//            market = market || {};
+//
+//            var id = market.ID;
+//            id = id || [];
+//            id = id[0];
+//
+//            var name = market.NAME;
+//            name = name || [];
+//            name = name[0];
+//
+//            var isShow = market.ISSHOW;
+//            isShow = isShow || [];
+//            isShow = isShow[0];
+//
+//            console.log('Id: ' + id + ' Name: ' + name + ' IsShow: ' + isShow);
+//            console.log(['ID', 'NAME', 'URL'].join('\t'));
+//            if(isShow === 'Y'){
+//                series.add(function () {
+//                    return zyh.tradeserverinfo('saix7207009849723463628', '9125488089198004672', id)
+//                        .then(function(servers){
+//                            servers = servers || [];
+//                            var server = servers[0];
+//                            server = server || {};
+//                            var url = server.TRADEURL;
+//                            url = url || [];
+//                            url = url[0];
+//                            console.log([id, name, url].join('\t'));
+//                            output += [id, name, url].join('\t') + '\n';
+//                        });
+//                });
+//            }
+//
+//
+//
+//        });
+//        series.run().then(function(){
+//            console.log(output);
+//        });
+//    });
+
+
+//zyh.tradeserverinfo('saix7207009849723463628', '9122363133991593542', '89')
+//.then(function(servers){
+//        servers = servers || [];
+//        var server = servers[0];
+//        server = server || {};
+//        var url = server.TRADEURL;
+//        url = url || [];
+//        url = url[0];
+//        console.log('tradeurl: ' + url);
+//    });
+
+
 

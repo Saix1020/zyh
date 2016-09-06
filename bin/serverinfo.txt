@@ -1,0 +1,152 @@
+2	模拟环境	http://m.zongyihui.cn:18080/Issue4ariesMobileServer/communicateServlet
+1	南京文交所	http://180.97.2.68:16916/IssueMobileServer/communicateServlet
+3	南方钱币邮票	http://183.6.187.34:19916/IssueMobileServer/communicateServlet
+10	易商联合	http://115.182.211.20:16925/Issue4ariesMobileServer/communicateServlet
+4	北交所福丽特	http://tradeweb1.dzp.wjybk.com:16922/IssueMobileServer/communicateServlet
+6	鲁银商品
+26	上酒中心
+23	周庄金属
+12	玖鑫大宗
+13	长商所
+14	贵州西南大宗
+7	西南大宗
+11	吉林玉米
+15	香港人参	http://122.13.217.107:10095/IssueMobileServer/communicateServlet
+17	宁夏汇银
+18	天津矿业权
+19	金马甲	http://jyqz3.jinmajia.com:16940/Issue4ariesMobileServer/communicateServlet
+21	吉林农产品
+22	湖南润达
+24	重庆再生
+5	华益金安
+8	深圳腾邦
+25	海峡交易所
+16	镇江商品
+9	华夏文交所	http://115.182.104.145:10305/Issue4ariesMobileServer/communicateServlet
+27	华夏商品
+28	华中文交所	http://61.183.138.62:19916/Issue4ariesMobileServer/communicateServlet
+29	汇丰贵金属
+30	中南邮票交易	http://180.97.2.113:15916/IssueMobileServer/communicateServlet
+31	横琴稀贵商品
+32	新华沪贵银
+33	江苏省文交所	http://180.96.20.217:10602/Issue4ariesMobileServer/communicateServlet
+34	当代文交所	http://115.182.245.21:16900/IssueMobileServer/communicateServlet
+35	宁夏银汇
+36	南京石化
+37	感知交易中心	http://58.241.39.67:17918/Issue4ariesMobileServer/communicateServlet
+38	苏州大宗
+39	长江联合
+40	大连再生资源
+41	大交所挂牌版
+42	上酒所	http://122.144.178.150:10601/Issue4ariesMobileServer/communicateServlet
+43	纪念章平台	http://122.96.106.45:9026/Issue4ariesMobileServer/communicateServlet
+44	远东材料
+45	甘肃稀贵
+46	东方文交所	http://115.182.221.23:10105/Issue4ariesMobileServer/communicateServlet
+47	西部贵金属
+48	山东北方盐化
+49	河北大宗
+50	哈尔滨大宗
+51	中江国际
+52	北方商品
+53	华棉所
+54	中港商品市场
+55	中融文化	http://115.182.221.15:16971/Issue4ariesMobileServer/communicateServlet
+56	长商所商品
+57	华强文交中心	http://180.96.50.180:16926/IssueMobileServer/communicateServlet
+58	西部商品
+59	海峡联合
+60	包头稀交所
+61	浙商所
+62	阿特多多	http://122.224.64.51:16925/Issue4ariesMobileServer/communicateServlet
+63	新华大宗
+64	中国艺交所邮	http://123.59.9.211:16978/Issue4ariesMobileServer/communicateServlet
+65	南宁大宗
+66	中鑫石化
+67	成都文交所	http://118.145.4.144:16930/Issue4ariesMobileServer/communicateServlet
+68	临沂国际商品
+69	南昌邮币卡	http://220.177.253.217:16957/Issue4ariesMobileServer/communicateServlet
+70	北酒所老酒	http://211.103.217.173:16916/Issue4ariesMobileServer/communicateServlet
+71	深油现货协议
+72	保利商品
+73	福建金雅
+74	新华现货
+75	温州不锈钢
+76	东北商品	http://59.44.131.115:16888/Issue4ariesMobileServer/communicateServlet
+77	广商所	http://qbyp.gzcmex.com:16966/Issue4ariesMobileServer/communicateServlet
+78	贵州指南针
+79	浙塑交易
+80	中艺所金属	http://115.182.241.80:16919/Issue4ariesMobileServer/communicateServlet
+81	上茶中心
+82	华东林交所
+83	华东林交所	http://115.236.77.220:16725/Issue4ariesMobileServer/communicateServlet
+84	中苏商品
+85	天津邮币卡
+86	青岛青西	http://140.207.201.180:10025/Issue4ariesMobileServer/communicateServlet
+87	河北邮币卡	http://123.59.182.25:16855/Issue4ariesMobileServer/communicateServlet
+88	青西大宗
+89	安贵交易平台	http://180.168.67.10:15930/Issue4ariesMobileServer/communicateServlet
+90	南商所	http://116.236.227.195:16917/Issue4ariesMobileServer/communicateServlet
+91	南方文化商品	http://183.6.187.34:16822/Issue4ariesMobileServer/communicateServlet
+92	金陵文交中心	http://180.96.50.164:16926/IssueMobileServer/communicateServlet
+93	文房四宝平台	http://58.83.217.57:16931/Issue4ariesMobileServer/communicateServlet
+94	新华金交所	http://113.57.222.35:16937/Issue4ariesMobileServer/communicateServlet
+95	五星中阿商品
+96	北文中心	http://54.223.45.159:16952/Issue4ariesMobileServer/communicateServlet
+97	大连乾元	http://218.61.202.103:16966/Issue4ariesMobileServer/communicateServlet
+98	大圆银泰
+99	西南邮币卡	http://114.112.101.35:10105/Issue4ariesMobileServer/communicateServlet
+100	甬商所
+101	隆盛艺术品	http://124.232.133.106:16920/Issue4ariesMobileServer/communicateServlet
+102	兴蜀大宗商品
+103	重庆土特产
+104	永瑞文化	http://115.182.241.71:16917/Issue4ariesMobileServer/communicateServlet
+105	四川联合酒类	http://125.71.213.11:10215/Issue4ariesMobileServer/communicateServlet
+106	广西邮币卡	http://115.182.241.115:10106/Issue4ariesMobileServer/communicateServlet
+107	蓝海文交	http://116.255.217.36:16918/Issue4ariesMobileServer/communicateServlet
+108	3.0收藏品	http://115.236.20.212:16918/Issue4ariesMobileServer/communicateServlet
+109	保利邮币卡	http://175.102.34.83:16980/Issue4ariesMobileServer/communicateServlet
+110	东北大宗	http://103.47.139.154:16929/Issue4ariesMobileServer/communicateServlet
+111	山东鼎丰商品	http://123.234.8.203:16930/Issue4ariesMobileServer/communicateServlet
+112	中安文化	http://58.20.6.22:10009/Issue4ariesMobileServer/communicateServlet
+113	国版阿凡提	http://58.83.219.245:16918/Issue4ariesMobileServer/communicateServlet
+114	纬德酒交中心	http://124.232.133.118:16918/Issue4ariesMobileServer/communicateServlet
+115	远洋恒利	http://222.73.7.164:16935/Issue4ariesMobileServer/communicateServlet
+116	黄河商品	http://61.164.161.35:10105/Issue4ariesMobileServer/communicateServlet
+117	上文申江	http://101.226.171.162:54910/Issue4ariesMobileServer/communicateServlet
+118	国富人参	http://183.57.44.73:10305/Issue4ariesMobileServer/communicateServlet
+119	吉林人参	http://222.169.202.87:16939/Issue4ariesMobileServer/communicateServlet
+120	大赢通Ⅲ
+121	东海商品
+122	联合文化	http://221.12.156.123:16918/Issue4ariesMobileServer/communicateServlet
+123	鸿鹄商品	http://123.157.24.221:16917/Issue4ariesMobileServer/communicateServlet
+124	安贵票证平台	http://122.144.180.52:10105/Issue4ariesMobileServer/communicateServlet
+125	金丝路评级	http://115.182.241.73:16917/Issue4ariesMobileServer/communicateServlet
+126	乾圆大通商品
+127	川商藏品中心	http://182.140.196.159:16917/Issue4ariesMobileServer/communicateServlet
+128	景德镇陶交所	http://180.97.15.199:16918/Issue4ariesMobileServer/communicateServlet
+129	四川润通	http://125.64.43.231:10008/Issue4ariesMobileServer/communicateServlet
+130	大连新丝路	http://175.102.9.81:10105/Issue4ariesMobileServer/communicateServlet
+131	贵州国际
+132	四川感知鼎坤	http://118.145.4.143:16969/Issue4ariesMobileServer/communicateServlet
+133	指南针发售	http://116.204.66.113:10105/Issue4ariesMobileServer/communicateServlet
+134	中销文交所	http://115.182.221.36:10105/Issue4ariesMobileServer/communicateServlet
+135	弘山文化	http://115.182.241.74:16919/Issue4ariesMobileServer/communicateServlet
+136	大宝赢	http://61.177.139.233:16919/Issue4ariesMobileServer/communicateServlet
+137	华今交易中心	http://115.182.241.76:16918/Issue4ariesMobileServer/communicateServlet
+138	贵州西南藏品	http://111.85.27.211:16918/Issue4ariesMobileServer/communicateServlet
+139	上艺所	http://122.144.178.150:10601/Issue4ariesMobileServer_GM/communicateServlet
+140	昊星现货
+141	中晟环球商品	http://116.255.202.165:16967/Issue4ariesMobileServer/communicateServlet
+142	湖北黄金屋	http://58.19.228.223:16929/Issue4ariesMobileServer/communicateServlet
+143	山西邮币卡	http://59.49.54.154:10607/Issue4ariesMobileServer/communicateServlet
+144	华鼎文交中心	http://180.97.15.3:10107/Issue4ariesMobileServer/communicateServlet
+145	桂糖商品市场
+146	华夏购销汇	http://175.6.14.83:16817/Issue4ariesMobileServer/communicateServlet
+147	大交所邮币卡	http://118.145.4.45:10105/Issue4ariesMobileServer/communicateServlet
+149	中文两岸	http://43.240.136.230:10105/Issue4ariesMobileServer/communicateServlet
+151	北文+山西	http://54.223.84.236:16922/Issue4ariesMobileServer/communicateServlet
+153	上海自贸金艺	http://122.144.213.9:10012/Issue4ariesMobileServer/communicateServlet
+154	上艺自贸区 	http://122.144.178.150:10601/Issue4ariesMobileServer_ZMQ/communicateServlet
+20	银河商品
+2	模拟环境	http://m.zongyihui.cn:18080/Issue4ariesMobileServer/communicateServlet

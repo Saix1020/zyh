@@ -4,6 +4,21 @@
 
 angular.module('myApp.controllers', [])
   .controller('MyCtrl1', function($scope, $http, $cookies, $location, $routeParams, $q) {
+
+        $scope.pincodes = [
+            'E7D9BA98589D654C799D237B288C4D6E9187065395458459523', // QQ 16832251
+            'ozGwruLoMDDdbk7RMS65lMw2TRA07140812755492777474', //wechat 16852072426
+            'saix7207009849723463628', // phone 18652072426
+            '9EA194A135439EFB4D36CD979E3FFDB49187752731198561416', // QQ 3139880238 asb#1234
+            '97292065AF327B32AAB12BD700A15C069188880142645998213', //  QQ 2983099879 asb#1234
+            '98CE67FFC71C4288C536059F7A9033D89189663772737727187', // QQ 3469055318 asb#1234
+            'AAA9C6B234520D8C1E385DBCECA9B3669190506346452764315', // QQ 210966010 asb#1234
+        ];
+
+
+
+
+
         $scope.products = [];
         var currentLocation = $location.path();
 
@@ -18,6 +33,11 @@ angular.module('myApp.controllers', [])
                         + '"><h4>' + '所有交易所' + '</h4></a></li>');
 
                     for(var key in markets) {
+                        if(markets[key].users.length == 0){
+                            continue;
+                        }
+
+
                         $('#market-nav')
                             .append('<li id="market-' + markets[key].id + '"><a href="/#' + '/view1'
                             + '/' + markets[key].id + '"><h4>' + key + '</h4></a></li>');
@@ -44,6 +64,16 @@ angular.module('myApp.controllers', [])
                         + '"><h4>' + '所有交易所' + '</h4></a></li>');
 
                     for(var key in markets){
+
+
+                        if(markets[key].users.length == 0){
+                            continue;
+                        }
+
+                        markets[key].pincode = markets[key].pin
+                            || $scope.pincodes[parseInt(Math.random()*1000%$scope.pincodes.length)];
+
+
                         $scope.markets.push({
                             name : key,
                             config : markets[key]
@@ -84,6 +114,8 @@ angular.module('myApp.controllers', [])
                     .success(function(markets){
                         $scope.markets = [];
                         for(var key in markets) {
+                            markets[key].pincode = markets[key].pin
+                                ||  $scope.pincodes[parseInt(Math.random()*1000%$scope.pincodes.length)];
                             $scope.markets.push({
                                 name: key,
                                 config: markets[key]
@@ -109,6 +141,10 @@ angular.module('myApp.controllers', [])
         $scope.login = function(market_config, user_info){
             var target = event.target;
             target.disabled = true;
+            user_info.output = '';
+
+            market_config.pin = market_config.pincode || market_config.pin;
+
             $http.post('/users/login', JSON.stringify({
                 market : market_config,
                 user : user_info
@@ -119,9 +155,14 @@ angular.module('myApp.controllers', [])
                         var expireDate = new Date();
                         expireDate.setMinutes(expireDate.getMinutes() + 120);
                         $cookies.put('' + market_config.id + '.' + user_info.name, response.token, {'expires': expireDate});
+                        user_info.output = '登录成功';
                     }
                     else {
-                        console.log(response.error_message + ' 登录失败');
+                        console.log(response.error_message[0] + ' 登录失败');
+                        user_info.output = response.error_message[0]
+                            + (response.return_code == -1?'! 请切换 Pin' : '');
+                        //alert(response.error_message[0]
+                        //+ (response.return_code == -1?'! 请切换 Pin' : ''));
                     }
                     target.disabled = false;
                 })
@@ -131,8 +172,9 @@ angular.module('myApp.controllers', [])
                 })
         };
 
-        $scope.query =  function(market_config, user_info) {
+        $scope.query =  function(market_config, user_info, no_alert) {
             var target = event.target;
+            user_info.output = '';
 
             target.disabled = true;
 
@@ -165,6 +207,12 @@ angular.module('myApp.controllers', [])
                         }
                         else {
                             console.log(response.error_message + ' 查询失败');
+                            //if(!no_alert){
+
+                            user_info.output = ' 查询失败:' + response.error_message;
+                                //alert(response.error_message+ ' 查询失败');
+
+                            //}
                         }
                         target.disabled = false;
 
@@ -180,6 +228,7 @@ angular.module('myApp.controllers', [])
 
         $scope.query_detail = function(market_config, user_info) {
             var target = event.target;
+            user_info.output = '';
 
             target.disabled = true;
 
@@ -200,16 +249,25 @@ angular.module('myApp.controllers', [])
                 })
                 .catch(function(e){
                     user_info.output = user_info.name + ' 查询失败';
+
                     console.log(user_info.name + ' 查询失败');
                     target.disabled = false;
 
                 });
         };
 
-        $scope.order = function(market_config, user_info){
+        $scope.order = function(market_config, user_info, no_alert){
             var target = event.target;
+            user_info.output = '';
 
             target.disabled = true;
+            user_info.product_amount = user_info.product_amount || 0;
+            if(parseInt(user_info.product_amount) == 0 || parseInt(user_info.product_amount)==NaN){
+                user_info.output = '请输入正确的抢购数量';
+                target.disabled = false;
+
+                return;
+            }
 
             $http.post('/users/order', JSON.stringify({
                 market : market_config,
@@ -223,6 +281,13 @@ angular.module('myApp.controllers', [])
                     else {
                         user_info.output = '抢购失败: ' + response.error_message;
                         console.log(response.error_message + ' 抢购失败');
+                        user_info.output = ' 抢购失败:' + response.error_message;
+
+                        //if(!no_alert){
+                        //    alert(response.error_message+ ' 抢购失败');
+                        //
+                        //}
+
                     }
                     target.disabled = false;
 
@@ -242,7 +307,7 @@ angular.module('myApp.controllers', [])
             market_config.users_info.forEach(function(userInfo){
                 if(userInfo.token && userInfo.token.length>0){
                     userInfo.selected_product = userInfo.selected_product || market_config.products[0].id;
-                    $scope.order(market_config, userInfo);
+                    $scope.order(market_config, userInfo, true);
                 }
             })
         };
@@ -251,7 +316,7 @@ angular.module('myApp.controllers', [])
 
             market_config.users_info.forEach(function(userInfo){
                 if(userInfo.token && userInfo.token.length>0) {
-                    $scope.query(market_config, userInfo);
+                    $scope.query(market_config, userInfo, true);
                 }
             })
         };

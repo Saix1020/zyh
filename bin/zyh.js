@@ -22,6 +22,8 @@ var markets = {
 
 function zyh(/*pincode, hostname, user, password, SI*/market, user)
 {
+    market = market || {};
+    user = user || {};
     this.pincode = market.pin;
     //this.hostname = hostname;
     this.user = user.name;
@@ -123,6 +125,20 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
             req.write(bodyString);
             req.end();
         });
+    }
+
+    this.weixinlogon = function(code){
+        var xml = jsonxml({
+            MEBS_MOBILE:[
+                { name : 'REQ', attrs:{name:'weixinlogon'}, children:[
+                    {name : 'DEVICEID', text : 'iBD2F32C5-BBFD-4F7D-A465-51ACA0C5A7DC'},
+                    {name : 'CODE', text : code},
+                    {name : 'MARKETID', text : '-1'},
+                ]}
+            ]
+        });
+        return MEBSHttpRequest(xml);
+
     }
 
     this.startDeviceInfo = function(){
@@ -284,16 +300,6 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
         });
     }.bind(this);
 
-    //
-//<MEBS_MOBILE>
-//<REQ name="issue_commodity_detail">
-//<U>1707903339</U>
-//<C_I>609132</C_I>
-//<S_I>8672102401628697671</S_I>
-//</REQ>
-//</MEBS_MOBILE>
-    //
-
     this.issue_commodity_detail = function(productId){
         var xml = jsonxml({
             MEBS_MOBILE:[
@@ -354,15 +360,3 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
 
 module.exports = zyh;
 
-
-// var decodeString = iconv.decode(
-//     '<?xml version="1.0" encoding = "GBK"?><MEBS_MOBILE><REP name="issue_commodity"><RESULTLIST>' +
-//     '<REC><CO_I>100056</CO_I><CO_N>�ȶ�������ˮƽ</CO_N><BR>1004</BR><PRC>6.70</PRC>' +
-//     '<QTY>15000.00</QTY>' +
-//     '<S_D>2016-09-01</S_D><E_D>2016-09-01</E_D></REC></RESULTLIST><RESULT><TTLREC>1</TTLREC>' +
-//     '<RETCODE>0</RETCODE><MESSAGE></MESSAGE></RESULT></REP></MEBS_MOBILE>', 'utf-8');
-// console.log(iconv.decode(decodeString, 'gbk'))
-//
-// xml2js.parseString(decodeString, function (err, result){
-//
-// });

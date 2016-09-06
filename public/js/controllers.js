@@ -117,6 +117,10 @@ angular.module('myApp.controllers', [])
                     .success(function (response) {
                         if(response.return_code == 0){
                             market_config.products = response.product || [];
+                            if(market_config.products.length == 0){
+                                target.disabled = false;
+                                return;
+                            }
                             market_config.users_info.forEach(function(userInfo) {
                                 userInfo.selected_product = response.product[0].id;
                             });

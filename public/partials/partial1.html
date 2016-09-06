@@ -16,6 +16,13 @@
             </form>
     </div>
     <br>
+    <div class="row" ng-show="market.config.products && market.config.products.length==0">
+        <div class="col-md-2 col-md-offset-5">
+            <!--<span class="label label-primary">-->
+                <h4 style="color: coral">没有查询到任何商品!</h4>
+            <!--</span>-->
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-3 col-md-offset-1"
              style="border:1px solid rgba(184, 184, 186, 0.47);"

@@ -42,6 +42,21 @@ var markets = {
       '1707903345'
     ],
     password : 'clj831011'
+  },
+
+  '南方文化' : {
+    id : 91,
+    ip : '183.6.187.34',
+    port : 16822,
+    path : '/Issue4ariesMobileServer/communicateServlet',
+    pin : 'saix7207009849723463628',
+    users : [
+      '8229019961',
+      '8229019962',
+      '8229019963',
+      '8229019964'
+    ],
+    password : '12131415'
   }
 };
 

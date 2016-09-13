@@ -9,6 +9,11 @@ var xml2js = require("xml2js");
 var http = require("http");
 var jsonxml = require('jsontoxml');
 var iconv = require('iconv-lite');
+var uuid = require('node-uuid');
+var uuid_list = require('../bin/uuid_list');
+uuid_list = uuid_list || [];
+var uuid_index = 0;
+var uuid_length = uuid_list.length;
 var user_agent = "宗易汇/2.0.6.1 CFNetwork/758.4.3 Darwin/15.5.0";
 
 var markets = {
@@ -18,7 +23,7 @@ var markets = {
         port : 15930,
         path : '/Issue4ariesMobileServer/communicateServlet'
     }
-}
+};
 
 function zyh(/*pincode, hostname, user, password, SI*/market, user)
 {
@@ -145,7 +150,7 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
         var xml = jsonxml({
             MEBS_MOBILE:[
                 { name : 'REQ', attrs:{name:'startdeviceinfo'}, children:[
-                    {name : 'DEVICEID', text : 'iBD2F32C5-BBFD-4F7D-A465-51ACA0C5A7DC'},
+                    {name : 'DEVICEID', text : 'i' + uuid_list[(uuid_index++)%uuid_length]},
                     {name : 'DEVICETYPE', text : '1'},
                     {name : 'MARKETID', text : '-1'},
                     {name : 'MODEL', text : 'iPhone 6'},
@@ -172,7 +177,7 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
         });
 
         return MEBSHttpRequest(xml);
-    };
+    }.bind(this);
 
     this.encryptstr = function(){
         var xml = jsonxml({

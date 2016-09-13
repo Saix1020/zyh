@@ -348,4 +348,24 @@ angular.module('myApp.controllers', [])
     })
     .controller('MyCtrl2', ['$scope', function($scope) {
 
-    }]);
+    }])
+    .controller('AllMarketCtl', function($scope, $http) {
+        $scope.markets = [];
+        $http.get('/users/markets')
+            .success(function (markets) {
+                for(var key in markets) {
+                    markets[key].new_users = markets[key].users || [];
+                    markets[key].new_password = markets[key].password || [];
+                    markets[key].new_users = markets[key].new_users.join('\n');
+                    $scope.markets.push({
+                        name: key,
+                        config: markets[key]
+                    });
+                }
+            });
+
+
+        $scope.save = function(market){
+            //$http()
+        }
+    });

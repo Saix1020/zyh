@@ -1,7 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var ZYH = require('../bin/zyh');
-var markets = require('../bin/markets');
+//var markets = require('../bin/markets');
+
+var fs = require('fs');
+var markets = JSON.parse(fs.readFileSync('../bin/serverinfo.json'));
+//fs.writeFileSync('./output.json',JSON.stringify({a:1,b:2}));
+//var JsonObj=JSON.parse(fs.readFileSync('./output.json'));
+
+
 
 var pincodes = [
     //'E7D9BA98589D654C799D237B288C4D6E9187065395458459523', // QQ 16832251
@@ -40,13 +47,27 @@ router.get('/market/:market', function(req, res, next){
 
 });
 
+router.post('/market/:market/add_users', function(req, res, next){
+
+    var users = req.body.users || [];
+    var market_id = req.params['market'];
+
+    for(var key in markets){
+        if (markets[key].id == market_id){
+            markets[key].users = users; // markets[key].users || [];
+        }
+    }
+    res.json();
+});
+
 //function zyh(pincode, hostname, user, password, SI)
 
 router.post('/login', function(req, res, next){
   var market = req.body.market || {};
   var user = req.body.user || {};
   var zyh = new ZYH(market, user);
-  zyh.checkpin()
+  zyh.startDeviceInfo()
+      .then(zyh.checkpin)
       .then(function(session){
         zyh.session = session;
         return zyh.encryptstr();

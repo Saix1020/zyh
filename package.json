@@ -18,6 +18,7 @@
     "promise" : "7.1.1",
     "promise-series" : "1.0.0",
     "iconv-lite" : "0.4.13",
-    "angular-ui-bootstrap" : "1.0"
+    "angular-ui-bootstrap" : "1.0",
+    "node-uuid" : "1.4.6"
   }
 }

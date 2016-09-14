@@ -365,7 +365,18 @@ angular.module('myApp.controllers', [])
             });
 
 
-        $scope.save = function(market){
-            //$http()
+        $scope.save = function(market_config){
+            var market_id = market_config.id;
+            $http.post('/users/market/'+ market_id + '/add_users', JSON.stringify({
+                users : market_config.new_users.length==0?[]:market_config.new_users.replace(new RegExp(/,/g),'\n').split('\n'),
+                password : market_config.new_password
+            }))
+                .success(function(res){
+                    market_config.open = false;
+                    alert('新增用户成功!');
+                })
+                .catch(function(e){
+                    alert('新增用户失败!');
+                });
         }
     });

@@ -1,7 +1,7 @@
 <div ng-repeat="market in markets" class="col-md-4">
     <!--<div class="row">-->
         <uib-accordion>
-            <div uib-accordion-group class="panel-default">
+            <div uib-accordion-group class="panel-default" is-open="market.config.open">
                 <uib-accordion-heading>
                     <h4>{{market.name}}</h4>
                 </uib-accordion-heading>
@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <div style="padding-left: 8px;padding-right: 8px;" class="pull-right">
                             <button type="submit"
-                                    ng-click="save(market.config, users_info)"
+                                    ng-click="save(market.config)"
                                     class="btn btn-success">
                                 保存
                             </button>

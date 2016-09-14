@@ -50,13 +50,23 @@ router.get('/market/:market', function(req, res, next){
 router.post('/market/:market/add_users', function(req, res, next){
 
     var users = req.body.users || [];
+    var password = req.body.password;
     var market_id = req.params['market'];
 
+    var changed = false;
     for(var key in markets){
         if (markets[key].id == market_id){
             markets[key].users = users; // markets[key].users || [];
+            markets[key].password = password;
+            changed = true;
+            break;
         }
     }
+
+    if(changed){
+        fs.writeFileSync('../bin/serverinfo.json',JSON.stringify(markets));
+    }
+
     res.json();
 });
 

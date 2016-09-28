@@ -30,6 +30,7 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
     market = market || {};
     user = user || {};
     this.pincode = market.pin;
+    this.deviceId = 'i' + uuid_list[(uuid_index++)%uuid_length];
     //this.hostname = hostname;
     this.user = user.name;
     this.password = user.password;
@@ -150,7 +151,7 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
         var xml = jsonxml({
             MEBS_MOBILE:[
                 { name : 'REQ', attrs:{name:'startdeviceinfo'}, children:[
-                    {name : 'DEVICEID', text : 'i' + uuid_list[(uuid_index++)%uuid_length]},
+                    {name : 'DEVICEID', text : this.deviceId},
                     {name : 'DEVICETYPE', text : '1'},
                     {name : 'MARKETID', text : '-1'},
                     {name : 'MODEL', text : 'iPhone 6'},
@@ -164,14 +165,14 @@ function zyh(/*pincode, hostname, user, password, SI*/market, user)
         });
 
         return MEBSHttpRequest(xml);
-    };
+    }.bind(this);
 
     this.checkpin = function(){
         var xml = jsonxml({
             MEBS_MOBILE:[
                 { name : 'REQ', attrs:{name:'checkpins'}, children:[
                     {name : 'PINSCODE', text : this.pincode},
-                    {name : 'DEVICEID', text : 'iBD2F32C5-BBFD-4F7D-A465-51ACA0C5A7DC'}
+                    {name : 'DEVICEID', text : this.deviceId}
                 ]}
             ]
         });
